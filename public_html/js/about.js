@@ -43,7 +43,7 @@ function loadRest() {
     $.getJSON(url, function(data) {
         content = "<div id='restDataList'><table border=0><tr>";
         for (i = 0; i < 4; i++) {
-            content += "<td><a id='listItem' onclick='showDetails(" + data[i].manufacturerId + ")' class='btn btn-primary'>" + data[i].name + " &raquo;</a></td></tr>";
+            content += "<td><a id='listItem' onclick='showDetails(" + data[i].name + ")' class='btn btn-primary'>" + data[i].name + " &raquo;</a></td></tr>";
         }
         content += "</table></div>";
         $("#rest").html(content);

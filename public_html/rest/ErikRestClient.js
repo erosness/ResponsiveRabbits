@@ -61,20 +61,21 @@ var app = {
 (function(models) {
 
 // Model for Manufacturer entity
-    models.Manufacturer = Backbone.Model.extend({
-        urlRoot: "rest/resources/manufacturer.json",
-        idAttribute: 'manufacturerId',
+    models.IxionModel = Backbone.Model.extend({
+//        urlRoot: "rest/resources/manufacturer.json",
+        urlRoot: "http://192.168.0.19:5055/v1/player/icon",
+        idAttribute: 'name',
         defaults: {
-            addressline2: "",
-            zip: "",
-            phone: "",
-            fax: "",
-            addressline1: "",
-            email: "",
+            ip_audio: "",
             name: "",
-            state: "",
-            rep: "",
-            city: ""
+            icon: "",
+//            fax: "",
+//            addressline1: "",
+//            email: "",
+//            name: "",
+//            state: "",
+//            rep: "",
+            uid: ""
         },
         toViewJson: function() {
             var result = this.toJSON(); // displayName property is used to render item in the list
@@ -116,9 +117,10 @@ var app = {
     
     
     // Collection class for Manufacturer entities
-    models.ManufacturerCollection = Backbone.Collection.extend({
-        model: models.Manufacturer,
-        url: "rest/resources/manufacturer.json",
+    models.IxionCollection = Backbone.Collection.extend({
+        model: models.IxionModel,
+        url: "http://192.168.0.19:5055/v1/player/icon",
+    //    url: "rest/resources/manufacturer.json",
         sync: function(method, model, options) {
             options || (options = {});
             var errorHandler = {
@@ -318,16 +320,16 @@ $(function() {
             }).render().el);
         },
         list: function() {
-            this.collection = new models.ManufacturerCollection();
+            this.collection = new models.IxionCollection();
             var self = this;
             this.collection.fetch({
                 success: function() {
                     self.listView = new views.ListView({
                         model: self.collection,
                         // tpl-manufacturer-list-itemis template identifier for item
-                        templateName: '#tpl-manufacturer-list-item'
+                        templateName: '#tpl-ixion-list-item'
                     });
-                    $('#datatable').html(self.listView.render().el).append(_.template($('#thead').html())());
+                    $('#datatable').html(self.listView.render().el).append(_.template($('#theadx').html())());
                     if (self.requestedId) {
                         self.details(self.requestedId);
                     }
@@ -357,7 +359,7 @@ $(function() {
                 this.view = new views.ModelView({
                     model: this.manufacturer,
                     // tpl-manufacturer-details is template identifier for chosen model element
-                    templateName: '#tpl-manufacturer-details',
+                    templateName: '#tpl-ixion-details',
                     getHashObject: function() {
                         return self.getData();
                     }
@@ -373,14 +375,14 @@ $(function() {
                 this.view.close();
             }
             var self = this;
-            var dataModel = new models.Manufacturer();
+            var dataModel = new models.IxionModel();
             // see isNew() method implementation in the model
             dataModel.notSynced = true;
             this.view = new views.ModelView({
                 model: dataModel,
                 collection: this.collection,
                 // tpl-manufacturer-details is a template identifier for chosen model element
-                templateName: '#tpl-manufacturer-details',
+                templateName: '#tpl-ixion-details',
                 navigate: function(id) {
                     self.navigate(id, false);
                 },
@@ -392,17 +394,24 @@ $(function() {
         },
         getData: function() {
             return {
-                manufacturerId: $('#manufacturerId').val(),
-                addressline2: $('#addressline2').val(),
-                zip: $('#zip').val(),
-                phone: $('#phone').val(),
-                addressline1: $('#addressline1').val(),
-                fax: $('#fax').val(),
-                email: $('#email').val(),
-                name: $('#name').val(),
-                state: $('#state').val(),
-                city: $('#city').val(),
-                rep: $('#rep').val()
+ //               manufacturerId: $('#manufacturerId').val(),
+ //               addressline2: $('#addressline2').val(),
+ //               zip: $('#zip').val(),
+ //               phone: $('#phone').val(),
+ //               addressline1: $('#addressline1').val(),
+ //               fax: $('#fax').val(),
+ //               email: $('#email').val(),
+ //               name: $('#name').val(),
+ //               state: $('#state').val(),
+ //               city: $('#city').val(),
+ //               rep: $('#rep').val()
+                
+            manufacturerId: $('#name').val(),    
+            ip_audio: $('#ip_audio').val(),
+            name: $('#name').val(),
+            icon: $('#icon').val(),
+            uid: $('#uid').val()
+
             };
         }
     });

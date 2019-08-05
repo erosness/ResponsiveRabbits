@@ -85,63 +85,29 @@ Contributor(s):
             <button class='new'>Create</button>
         </script>
 
-        <script type='text/template' id='thead'>
-        <thead><th>manufacturerId</th>
-        <th>addressline2</th>
-        <th>zip</th>
-        <th>phone</th>
-        <th>addressline1</th>
-        <th>fax</th>
-        <th>email</th>
-        <th>name</th>
-        <th>state</th>
-        <th>city</th>
-        <th>rep</th>
-    </thead>
+        <script type='text/template' id='theadx'>
+           <th>name</th>
+    </theadx>
 </script>
-<script type='text/template' id='tpl-manufacturer-list-item'>
-    <td><a href='#<%= manufacturerId %>'><%= manufacturerId %></a></td>
-    <td><%= addressline2 %></td>
-    <td><%= zip %></td>
-    <td><%= phone %></td>
-    <td><%= addressline1 %></td>
-    <td><%= fax %></td>
-    <td><%= email %></td>
+<script type='text/template' id='tpl-ixion-list-item'>
+    <td><a href='#<%= name %>'><%= name %></a></td>
+    <td><%= ip_audio %></td>
     <td><%= name %></td>
-    <td><%= state %></td>
-    <td><%= city %></td>
-    <td><%= rep %></td>
+    <td><%= icon %></td>
+    <td><%= uid %></td>
 </script>
 
-<script type='text/template' id='tpl-manufacturer-details'>
+<script type='text/template' id='tpl-ixion-details'>
     <div>
         <table>
             <tbody>
                 <tr><td>Id</td>
                     <td>
-                        <input type='text' id='manufacturerId' name='id' value='<%= typeof(manufacturerId)!== "undefined" ? manufacturerId : "" %>'  />
+                        <input type='text' id='name' name='id' value='<%= typeof(name)!== "undefined" ? name : "" %>'  />
                     </td>
                 </tr>
                 <tr>
-                    <td>addressline2</td><td><input type='text' id='addressline2' name='addressline2' value='<%= addressline2 %>'/></td></tr>
-                <tr>
-                    <td>zip</td><td><input type='text' id='zip' name='zip' value='<%= zip %>'/></td></tr>
-                <tr>
-                    <td>phone</td><td><input type='text' id='phone' name='phone' value='<%= phone %>'/></td></tr>
-                <tr>
-                    <td>addressline1</td><td><input type='text' id='addressline1' name='addressline1' value='<%= addressline1 %>'/></td></tr>
-                <tr>
                     <td>fax</td><td><input type='text' id='fax' name='fax' value='<%= fax %>'/></td></tr>
-                <tr>
-                    <td>email</td><td><input type='text' id='email' name='email' value='<%= email %>'/></td></tr>
-                <tr>
-                    <td>name</td><td><input type='text' id='name' name='name' value='<%= name %>'/></td></tr>
-                <tr>
-                    <td>state</td><td><input type='text' id='state' name='state' value='<%= state %>'/></td></tr>
-                <tr>
-                    <td>city</td><td><input type='text' id='city' name='city' value='<%= city %>'/></td></tr>
-                <tr>
-                    <td>rep</td><td><input type='text' id='rep' name='rep' value='<%= rep %>'/></td></tr>
             </tbody>
         </table>
         <!--
